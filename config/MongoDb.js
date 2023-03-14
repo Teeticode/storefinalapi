@@ -9,7 +9,11 @@ const connectToDb = async ()=>{
             useUnifiedTopology:true,
             useNewUrlParser:true,
         })
-        console.log('connected to portfolio local')
+        if(connection){
+            console.log('connected to portfolio local')
+        }else{
+            console.log('something went wrong')
+        }
     }catch(error){
         console.error(`Error is ${error.message}`);
         process.exit(1)

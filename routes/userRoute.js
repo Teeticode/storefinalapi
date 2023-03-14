@@ -66,7 +66,7 @@ userRouter.post('/signup',
                             
                             user.save()
                             .then((user)=>{
-                                return res.status(200).json({message:'Account created Successfully'})
+                                return res.status(201).json({message:'Account created Successfully'})
                             })
                             .catch((err)=>{
                                 return res.status(500).json({
@@ -118,10 +118,10 @@ userRouter.post('/signin', (req,res)=>{
                         },
                         {new:true}
                     ).select('token username email')
-                    .then((updated)=>{
-                        return res.status(200).json(updated)
-                    }).catch((err=>{
-                        res.json(err)
+                    .then((result)=>{
+                        return res.status(201).json(result)
+                    }).catch((error=>{
+                        return res.status(500).json(error)
                     }))
 
                     
