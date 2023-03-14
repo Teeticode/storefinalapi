@@ -72,7 +72,7 @@ businessRouter.get('/allbiz/owner',verifyUser, (req,res)=>{
     })
 })
 
-businessRouter.post('/',verifyUser,(req,res)=>{
+businessRouter.post('/signup',verifyUser,(req,res)=>{
     if(!req.body.name||!req.body.description||!req.body.category){
         return res.status(500).json({error:"Fill all fields"})
     }
@@ -137,7 +137,7 @@ businessRouter.post('/signin',verifyUser,(req,res)=>{
                     process.env.TOKEN_SECRET_BIZ,
                     {expiresIn:'3w'}
                 )
-                return res.status(200).json({token:token})
+                return res.status(201).json({token:token})
             }else{
                 return res.status(403).json({errro:"Invalid"})
             }
