@@ -102,7 +102,8 @@ businessRouter.post('/signup',verifyUser,(req,res)=>{
                     const business = new Business({
                         name:req.body.name,
                         owner:req.user,
-                        description:req.body.description
+                        description:req.body.description,
+                        image:req.body.image,
                     })
                     business.save()
                     .then((business)=>{
