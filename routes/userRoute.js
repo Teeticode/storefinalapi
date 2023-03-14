@@ -99,7 +99,6 @@ userRouter.post('/signin', (req,res)=>{
     User.findOne({email:email.toLowerCase()})
     .then((user)=>{
         if(user){
-            console.log(user)
             bcryptjs.compare(req.body.password, user.password)
             .then((verifieduser)=>{
                 if(verifieduser){
@@ -117,7 +116,7 @@ userRouter.post('/signin', (req,res)=>{
                             token:token
                         },
                         {new:true}
-                    ).select('token username email')
+                    ).select('token username email isAdmin')
                     .then((result)=>{
                         return res.status(201).json(result)
                     }).catch((error=>{
