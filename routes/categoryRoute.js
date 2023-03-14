@@ -43,7 +43,7 @@ categoryRouter.post('/',verifyUser, (req,res)=>{
     });
     category.save()
     .then((newCat)=>{
-        res.status(201).json(newCat)
+        res.status(201).json({results:newCat})
     })
     .catch((err)=>{
         res.status(500).json({
