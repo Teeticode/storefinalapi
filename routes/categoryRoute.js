@@ -38,19 +38,29 @@ categoryRouter.post('/',verifyUser, (req,res)=>{
         return res.status(401).json({error:'Your not Authorized!!!'})
     }
     console.log(req.user)
-    const category = new Category({
-        name:req.body.name
-    });
-    category.save()
-    .then((newCat)=>{
-        res.status(201).json({results:newCat})
+    Category.find({name:req.body.name})
+    .then((cat)=>{
+        if(cat){
+            return res.status(401).json({error:"Category Already exists"})
+        }else{
+            const category = new Category({
+                name:req.body.name
+            });
+            category.save()
+            .then((newCat)=>{
+                res.status(201).json({message:"Category Created Successfully"})
+            })
+            .catch((err)=>{
+                res.status(500).json({
+                    error:'try again',
+                    success:false
+                })
+            })  
+        }
+    }).catch(error=>{
+        return res.status(500).json({error:error})
     })
-    .catch((err)=>{
-        res.status(500).json({
-            error:'try again',
-            success:false
-        })
-    })
+    
 })
 
 categoryRouter.delete("/:id", verifyUser, (req,res)=>{
