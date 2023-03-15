@@ -38,7 +38,7 @@ categoryRouter.post('/',verifyUser, (req,res)=>{
         return res.status(401).json({error:'Your not Authorized!!!'})
     }
     console.log(req.user)
-    Category.find({name:req.body.name})
+    Category.findOne({name:req.body.name})
     .then((cat)=>{
         if(cat){
             return res.status(401).json({error:"Category Already exists"})
