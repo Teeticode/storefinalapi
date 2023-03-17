@@ -8,6 +8,7 @@ const connectToDb = async ()=>{
         const connection = await mongoose.connect(MONGO_URI,{
             useUnifiedTopology:true,
             useNewUrlParser:true,
+            dbName:'storeyako'
         })
         if(connection){
             console.log('connected to portfolio local')
