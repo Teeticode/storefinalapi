@@ -11,7 +11,7 @@ const connectToDb = async ()=>{
             dbName:'storeyako'
         })
         if(connection){
-            console.log('connected to portfolio local')
+            console.log('connected to store database')
         }else{
             console.log('something went wrong')
         }
