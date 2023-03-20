@@ -141,7 +141,7 @@ businessRouter.post('/signin',verifyUser,(req,res)=>{
                 )
                 return res.status(201).json({token:token})
             }else{
-                return res.status(403).json({errro:"Invalid"})
+                return res.status(403).json({error:"Invalid Request"})
             }
         }else{
             return res.status(404).json({error:"Business not found"})
