@@ -104,6 +104,7 @@ businessRouter.post('/signup',verifyUser,(req,res)=>{
                         owner:req.user,
                         description:req.body.description,
                         image:req.body.image,
+                        category:req.body.category
                     })
                     business.save()
                     .then((business)=>{
@@ -128,7 +129,7 @@ businessRouter.post('/signin',verifyUser,(req,res)=>{
     Business.findOne({name:req.body.name})
     .then((biz)=>{
         if(biz){
-            if(biz.owner === req.user){
+            if(biz.owner == req.user){
                 const token = jwt.sign(
                     {
                         bizId:biz._id, 
